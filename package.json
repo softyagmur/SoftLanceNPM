@@ -1,6 +1,6 @@
 {
   "name": "softlance",
-  "version": "1.0.0-beta.32",
+  "version": "1.0.0",
   "description": "Private express router system for managing user accounts and authentication.",
   "main": "dist/app.js",
   "types": "dist/app.d.ts",

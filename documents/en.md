@@ -1,6 +1,6 @@
 # 🌍 Welcome to the English Guide!
 
-**✨ Version 1.0.0-beta.32**
+**✨ Version 1.0.0**
 ```bash
 npm i softlance
 ```

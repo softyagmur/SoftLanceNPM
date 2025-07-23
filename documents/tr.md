@@ -1,6 +1,6 @@
 # 🌍 Türkçe kılavuza hoş geldiniz!
 
-**✨ Sürüm 1.0.0-beta.32**
+**✨ Sürüm 1.0.0**
 ```bash
 npm i softlance
 ```
