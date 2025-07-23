@@ -1,10 +1,9 @@
 # 🌍 Türkçe kılavuza hoş geldiniz!
 
-**✨ Sürüm 1.0.0**
+**✨ Sürüm 1.1.0**
 ```bash
 npm i softlance
 ```
-**Not:** Bu bir beta sürümüdür. Hatalar olabilir.
 
 # ⏰ Uzun süreli planlar
 - Şu anlık yok.
@@ -84,7 +83,9 @@ softify(express(), {
 # 📦 Modülün içeriği
 
 - Not: **routes** ve **manage** sınıflarının dosya dışına aktarımı varsayılan aktarım olarak ayarlanmalıdır.
+
 # 📁 Dosya yapıları
+
 ## 💡 Manage dosyası (JSON)
 
 ```json
@@ -202,5 +203,76 @@ db.deleteAll(
 
 - Not: **database** sınıflarının dosya dışına aktarımı varsayılan aktarım olarak ayarlanmalıdır.
 
+# 🏅 Veritabanı sistemleri (Mongo)
+
+CommonJS:
+
+```js
+const { MongoDatabase } = require("softlance"); //* npm install softlance
+```
+
+ESM:
+
+```ts
+import { MongoDatabase } from "softlance"; //* npm install sofltance
+```
+
+Örnek kod:
+
+```ts
+const db = new MongoDatabase(
+  "your_mongo_uri", // Mongo URI
+  "collection_name", // Collection Name
+  true // ConsoleLog enabled
+);
+
+(async () => {
+  await db.connect();
+  await db.set("helloWorld", "hello!"); // output: "hello!"
+  await db.set("user.data", { name: "YagmurSofware", age: 21 }); // output: {name:"YagmurSofware", age: 21}
+
+  await db.get("helloWorld"); // output: "hello!"
+  await db.get("user.data"); // output: {name:"YagmurSofware", age: 21}
+  await db.get("user.data.name"); // output: "YagmurSofware
+  await db.get("user.data.age"); // output: 21
+  await db.get("user.data.nonExistentField"); // output: undefined
+
+  await db.has("helloWorld"); // output: true
+  await db.has("user.data"); // output: true
+  await db.has("user.data.name"); // output: true
+  await db.has("user.data.age"); // output: true
+  await db.has("user.data.nonExistentField"); // output: false
+  await db.has("nonExistentKey"); // output: false
+
+  await db.delete("helloWorld"); // output: true
+  await db.delete("user.data.name"); // output: true
+  await db.delete("user.data.age"); // output: true
+  await db.delete("user.data.nonExistentField"); // output: false
+  await db.delete("nonExistentKey"); // output: false
+
+  await db.getAll(); // output: {}
+
+  await db.add("newKey", 100); // output: 100
+  await db.add("newKey", 50); // output: 150
+  await db.subtract("newKey", 30); // output: 120
+
+  await db.push("user.data.hobbies", "coding"); // output: ["coding"]
+  await db.push("user.data.hobbies", "gaming"); // output: ["coding", "gaming"]
+  await db.push("user.data.hobbies", "reading"); // output: ["coding", "gaming", "reading"]
+  await db.pull("user.data.hobbies", "reading"); // output: ["codin", gaming"]
+  await db.deleteAll(
+    "I acknowledge that all my data will be deleted and declare that I am solely responsible for this process."
+  ); // output: true
+  await db.deleteAll(
+    "Tüm verilerimin silineceğini kabul ediyor ve bu işlemle ilgili tüm sorumluluğun tarafıma ait olduğunu beyan ediyorum."
+  ); // output: true
+})();
+```
+
+# 📦 Modülün içeriği
+
+- Not: **database** sınıflarının dosya dışına aktarımı varsayılan aktarım olarak ayarlanmalıdır.
+
 # 🪰 Hata mı Buldun?
+
 - 📱 Bana ulaşmak istiyorsanız [discord](https://discord.com/users/1390739558085300264) üzerinden ulaşabilirsiniz!

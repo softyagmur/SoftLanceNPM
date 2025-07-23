@@ -574,7 +574,7 @@ export class JsonDatabase {
     }
   }
 
-  unpush(key: string, value: string | number | boolean | object): void {
+  pull(key: string, value: string | number | boolean | object): void {
     if (!this.CheckConnection()) return;
 
     if (!key || typeof key !== "string") {

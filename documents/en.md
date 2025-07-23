@@ -1,10 +1,9 @@
 # 🌍 Welcome to the English Guide!
 
-**✨ Version 1.0.0**
+**✨ Version 1.1.0**
 ```bash
 npm i softlance
 ```
-**Note:** This is a beta release. There may be bugs.
 
 # ⏰ Long-term Plans
 - None for now.
@@ -86,6 +85,7 @@ softify(express(), {
 - Note: **routes** and **manage** classes should be exported as default.
 
 # 📁 File Structures
+
 ## 💡 Manage File (JSON)
 
 ```json
@@ -195,7 +195,7 @@ db.deleteAll(
 // or
 
 db.deleteAll(
-  "I acknowledge that all my data will be deleted and declare that I am solely responsible for this process."
+  "Tüm verilerimin silineceğini kabul ediyor ve bu işlemle ilgili tüm sorumluluğun tarafıma ait olduğunu beyan ediyorum."
 ); // output: true
 ```
 
@@ -203,5 +203,76 @@ db.deleteAll(
 
 - Note: **database** classes should be exported as default.
 
+# 🏅 Database Systems (Mongo)
+
+CommonJS:
+
+```js
+const { MongoDatabase } = require("softlance"); //* npm install softlance
+```
+
+ESM:
+
+```ts
+import { MongoDatabase } from "softlance"; //* npm install softlance
+```
+
+Example code:
+
+```ts
+const db = new MongoDatabase(
+  "your_mongo_uri", // Mongo URI
+  "collection_name", // Collection Name
+  true // ConsoleLog enabled
+);
+
+(async () => {
+  await db.connect();
+  await db.set("helloWorld", "hello!"); // output: "hello!"
+  await db.set("user.data", { name: "YagmurSofware", age: 21 }); // output: {name:"YagmurSofware", age: 21}
+
+  await db.get("helloWorld"); // output: "hello!"
+  await db.get("user.data"); // output: {name:"YagmurSofware", age: 21}
+  await db.get("user.data.name"); // output: "YagmurSofware
+  await db.get("user.data.age"); // output: 21
+  await db.get("user.data.nonExistentField"); // output: undefined
+
+  await db.has("helloWorld"); // output: true
+  await db.has("user.data"); // output: true
+  await db.has("user.data.name"); // output: true
+  await db.has("user.data.age"); // output: true
+  await db.has("user.data.nonExistentField"); // output: false
+  await db.has("nonExistentKey"); // output: false
+
+  await db.delete("helloWorld"); // output: true
+  await db.delete("user.data.name"); // output: true
+  await db.delete("user.data.age"); // output: true
+  await db.delete("user.data.nonExistentField"); // output: false
+  await db.delete("nonExistentKey"); // output: false
+
+  await db.getAll(); // output: {}
+
+  await db.add("newKey", 100); // output: 100
+  await db.add("newKey", 50); // output: 150
+  await db.subtract("newKey", 30); // output: 120
+
+  await db.push("user.data.hobbies", "coding"); // output: ["coding"]
+  await db.push("user.data.hobbies", "gaming"); // output: ["coding", "gaming"]
+  await db.push("user.data.hobbies", "reading"); // output: ["coding", "gaming", "reading"]
+  await db.pull("user.data.hobbies", "reading"); // output: ["coding", "gaming"]
+  await db.deleteAll(
+    "I acknowledge that all my data will be deleted and declare that I am solely responsible for this process."
+  ); // output: true
+  await db.deleteAll(
+    "Tüm verilerimin silineceğini kabul ediyor ve bu işlemle ilgili tüm sorumluluğun tarafıma ait olduğunu beyan ediyorum."
+  ); // output: true
+})();
+```
+
+# 📦 Module Contents
+
+- Note: **database** classes should be exported as default.
+
 # 🪰 Found a Bug?
+
 - 📱 If you want to contact me, you can reach me via [discord](https://discord.com/users/1390739558085300264)!

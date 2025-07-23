@@ -1,6 +1,6 @@
 {
   "name": "softlance",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Private express router system for managing user accounts and authentication.",
   "main": "dist/app.js",
   "types": "dist/app.d.ts",
@@ -14,6 +14,13 @@
     "dist/",
     "README.md"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/app.js",
+      "import": "./dist/app.js",
+      "types": "./dist/app.d.ts"
+    }
+  },
   "keywords": [],
   "author": "Softlance Team",
   "license": "MIT",
@@ -25,8 +32,12 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@types/mongoose": "^5.11.96",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "mongoose": "^8.16.4",
+    "path": "^0.12.7"
   }
 }
