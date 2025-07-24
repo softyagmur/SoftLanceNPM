@@ -1,17 +1,18 @@
 # 🌍 Türkçe kılavuza hoş geldiniz!
 
-**✨ Sürüm 1.1.0**
+**✨ Sürüm 1.3.0**
 ```bash
 npm i softlance
 ```
 
 # ⏰ Uzun süreli planlar
-- Şu anlık yok.
+- Captcha sistemi daha güçlendirilecek.
 
 # 🚀 Yenilikler
 - JsonDatabase eklendi.
 - Express sunucuları için koruma sistemileri (hashPassword,comparePassword,rateLimiter).
 - Express modüler yapı (softify,start).
+- 
 
 # 🧰 Hata düzeltmeleri
 - Şu anlık yok.
@@ -270,9 +271,59 @@ const db = new MongoDatabase(
 ```
 
 # 📦 Modülün içeriği
-
 - Not: **database** sınıflarının dosya dışına aktarımı varsayılan aktarım olarak ayarlanmalıdır.
 
-# 🪰 Hata mı Buldun?
+# 🏅 Captcha sistemi (Ana Dosya)
 
+CommonJS:
+
+```js
+const { captchaGeneratorForDiscord } = require("softlance"); //* npm install softlance
+```
+
+ESM:
+
+```ts
+import { captchaGeneratorForDiscord } from "softlance"; //* npm install softlance
+```
+
+Örnek kod:
+
+```js
+// app.js
+client.on("...", async (_) => {
+  const captcha = captchaGeneratorForDiscord();
+
+  await _.send({
+    content:`Captcha code: ${captcha.text}`,
+    files: [
+      {
+        attachment: captcha.attachment,
+        name: captcha.name,
+      }
+    ]
+  })
+});
+```
+
+```ts
+// app.ts
+client.on("...", async (_: Message) => {
+    const captcha = captchaGeneratorForDiscord();
+
+    if (_.channel && "send" in _.channel) {
+      await _.send({
+        content: `Captcha code: ${captcha.text}`,
+        files: [
+          {
+            attachment: captcha.attachment,
+            name: captcha.name,
+          },
+        ],
+      });
+    }
+});
+```
+
+# 🪰 Hata mı Buldun?
 - 📱 Bana ulaşmak istiyorsanız [discord](https://discord.com/users/1390739558085300264) üzerinden ulaşabilirsiniz!

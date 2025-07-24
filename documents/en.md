@@ -1,17 +1,17 @@
 # 🌍 Welcome to the English Guide!
 
-**✨ Version 1.1.0**
+**✨ Version 1.3.0**
 ```bash
 npm i softlance
 ```
 
 # ⏰ Long-term Plans
-- None for now.
+- The captcha system will be further strengthened.
 
 # 🚀 What's New
-- Added JsonDatabase.
+- JsonDatabase added.
 - Protection systems for Express servers (hashPassword, comparePassword, rateLimiter).
-- Modular structure for Express (softify, start).
+- Express modular structure (softify, start).
 
 # 🧰 Bug Fixes
 - None for now.
@@ -195,7 +195,7 @@ db.deleteAll(
 // or
 
 db.deleteAll(
-  "Tüm verilerimin silineceğini kabul ediyor ve bu işlemle ilgili tüm sorumluluğun tarafıma ait olduğunu beyan ediyorum."
+  "I acknowledge that all my data will be deleted and declare that I am solely responsible for this process."
 ); // output: true
 ```
 
@@ -229,11 +229,11 @@ const db = new MongoDatabase(
 (async () => {
   await db.connect();
   await db.set("helloWorld", "hello!"); // output: "hello!"
-  await db.set("user.data", { name: "YagmurSofware", age: 21 }); // output: {name:"YagmurSofware", age: 21}
+  await db.set("user.data", { name: "YagmurSoftware", age: 21 }); // output: {name:"YagmurSoftware", age: 21}
 
   await db.get("helloWorld"); // output: "hello!"
-  await db.get("user.data"); // output: {name:"YagmurSofware", age: 21}
-  await db.get("user.data.name"); // output: "YagmurSofware
+  await db.get("user.data"); // output: {name:"YagmurSoftware", age: 21}
+  await db.get("user.data.name"); // output: "YagmurSoftware"
   await db.get("user.data.age"); // output: 21
   await db.get("user.data.nonExistentField"); // output: undefined
 
@@ -264,15 +264,65 @@ const db = new MongoDatabase(
     "I acknowledge that all my data will be deleted and declare that I am solely responsible for this process."
   ); // output: true
   await db.deleteAll(
-    "Tüm verilerimin silineceğini kabul ediyor ve bu işlemle ilgili tüm sorumluluğun tarafıma ait olduğunu beyan ediyorum."
+    "I acknowledge that all my data will be deleted and declare that I am solely responsible for this process."
   ); // output: true
 })();
 ```
 
 # 📦 Module Contents
-
 - Note: **database** classes should be exported as default.
 
-# 🪰 Found a Bug?
+# 🏅 Captcha System (Main File)
 
+CommonJS:
+
+```js
+const { captchaGeneratorForDiscord } = require("softlance"); //* npm install softlance
+```
+
+ESM:
+
+```ts
+import { captchaGeneratorForDiscord } from "softlance"; //* npm install softlance
+```
+
+Example code:
+
+```js
+// app.js
+client.on("...", async (_) => {
+  const captcha = captchaGeneratorForDiscord();
+
+  await _.send({
+    content:`Captcha code: ${captcha.text}`,
+    files: [
+      {
+        attachment: captcha.attachment,
+        name: captcha.name,
+      }
+    ]
+  })
+});
+```
+
+```ts
+// app.ts
+client.on("...", async (_: Message) => {
+    const captcha = captchaGeneratorForDiscord();
+
+    if (_.channel && "send" in _.channel) {
+      await _.send({
+        content: `Captcha code: ${captcha.text}`,
+        files: [
+          {
+            attachment: captcha.attachment,
+            name: captcha.name,
+          },
+        ],
+      });
+    }
+});
+```
+
+# 🪰 Found a Bug?
 - 📱 If you want to contact me, you can reach me via [discord](https://discord.com/users/1390739558085300264)!
