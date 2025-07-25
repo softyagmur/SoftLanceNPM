@@ -12,7 +12,7 @@ npm i softlance
 - JsonDatabase eklendi.
 - Express sunucuları için koruma sistemileri (hashPassword,comparePassword,rateLimiter).
 - Express modüler yapı (softify,start).
-- 
+- Captcha sistemi eklendi.
 
 # 🧰 Hata düzeltmeleri
 - Şu anlık yok.
