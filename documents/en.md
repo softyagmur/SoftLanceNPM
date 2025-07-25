@@ -12,6 +12,7 @@ npm i softlance
 - JsonDatabase added.
 - Protection systems for Express servers (hashPassword, comparePassword, rateLimiter).
 - Express modular structure (softify, start).
+- Captcha generator added.
 
 # 🧰 Bug Fixes
 - None for now.
